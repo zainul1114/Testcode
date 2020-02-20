@@ -1,0 +1,22 @@
+#!/bin/bash
+#install base packages
+yum install -y epel-release zlib-devel openssl-devel sqlite-devel qt5-qtbase-devel texinfo gstreamer-plugins-base-devel libXext-devel libGLU-devel libXt-devel libXrender-devel libXinerama-devel libpng-devel libXrandr-devel libXi-devel libXft-devel libjpeg-turbo-devel libXcursor-devel readline-devel ncurses-devel mpfr-devel gmp-devel bzip2-devel openssl-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel systemtap-sdt-devel libffi-devel
+#download and install py36
+wget -c https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz && tar xf Python-3.6.8.tgz && cd Python-3.6.8
+mkdir build && cd build
+../configure --prefix=/share/apps/platform/ai/python3/3_6_8 --enable-optimizations --enable-shared --enable-loadable-sqlite-extensions --with-ensurepip=install && make -j8 && make install
+#source
+#vim ~/.bashrc
+#export PATH=/=/share/apps/platform/ai/python3/3_6_8/bin/:$PATH
+#export LD_LIBRARY_PATH==/share/apps/platform/ai/python3/3_6_8/lib/:$LD_LIBRARY_PATH
+#source ~/.bashrc
+
+python --version
+pip --version
+python3 --version
+pip --version
+#install python packages using pip
+python3 -m pip install --upgrade pip setuptools wheel
+python3 -m pip install numpy scipy pandas matplotlib pillow sklearn jupyter opencv-python keras statsmodels protobuf scikit-image tensorflow theano larq tensorflow torch tqdm glob2 
+
+#python3 -m pip install -r reqmts.txt
